@@ -1,14 +1,14 @@
 # Chicago Crime EDA (2018–2023)
 
-Exploratory data analysis of Chicago crime incidents from 2018–2023 to identify temporal and categorical patterns that can inform resource allocation and public safety decisions. [web:63][web:74]
+Exploratory data analysis of Chicago crime incidents from 2018–2023 to identify temporal and categorical patterns that can inform resource allocation and public safety decisions.
 
 ## Data
 
-- Source: City of Chicago “Crimes – 2001 to Present” open data portal (downloaded locally). [web:63][web:60]
+- Source: City of Chicago “Crimes – 2001 to Present” open data portal (downloaded locally).
 - Subset: Incidents between 2018-01-01 and 2023-12-31.
 - Key fields used: offense type, date/time, arrest flag, location (district, community area, coordinates).
 
-Raw CSV files are **not** included in this repo due to size; they can be downloaded directly from the Chicago Data Portal or Kaggle. [web:63][web:65][web:74]
+Raw CSV files are **not** included in this repo due to size; they can be downloaded directly from the Chicago Data Portal or Kaggle.
 
 ## Questions
 
@@ -35,7 +35,7 @@ Raw CSV files are **not** included in this repo due to size; they can be downloa
 
 ## How to Run
 
-1. Download the “Crimes – 2001 to Present” CSV from the Chicago Data Portal. [web:63][web:60]
+1. Download the “Crimes – 2001 to Present” CSV from the Chicago Data Portal.
 2. Save it in the project folder as `Crimes_-_2001_to_Present.csv`.
 3. Open `chicago-crime-project.R` in RStudio.
 4. Run the script to reproduce the transformations and plots.
