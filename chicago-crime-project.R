@@ -12,7 +12,6 @@ crime <- crime_raw |>
     hour      = hour(date_time)
   )
 
-# check before filtering
 summary(crime$date_time)
 table(crime$year)
 
