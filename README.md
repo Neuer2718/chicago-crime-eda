@@ -1,3 +1,5 @@
+![R Lint](https://github.com/Neuer2718/chicago-crime-eda/actions/workflows/lint.yml/badge.svg)
+
 # Chicago Crime EDA (2018–2023)
 
 Exploratory data analysis of Chicago crime incidents from 2018–2023 to identify temporal and categorical patterns that can inform resource allocation and public safety decisions.
