@@ -24,8 +24,10 @@ jobs:
 
       - name: Download Chicago Crime data
         run: |
-          curl -L -o "Crimes_-_2001_to_Present.csv" \
-            "https://data.cityofchicago.org/resource/ijzp-q8t2.csv?$limit=500000"
+          curl -L \
+            -H "Accept: text/csv" \
+            -o "Crimes_-_2001_to_Present.csv" \
+            "https://data.cityofchicago.org/resource/ijzp-q8t2.csv?%24limit=500000"
 
       - name: Run script
         run: Rscript chicago-crime-project.R

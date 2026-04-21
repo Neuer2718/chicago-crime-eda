@@ -6,11 +6,14 @@ library(lubridate)
 # Read raw crimes CSV downloaded from the Chicago data portal
 crime_raw <- read_csv("Crimes_-_2001_to_Present.csv")
 
+# Normalise column names to snake_case so references are unambiguous
+crime_raw <- rename_with(crime_raw, ~tolower(gsub(" ", "_", .x)))
+
 # Parse datetime and create time-based features
 crime <- crime_raw |>
   mutate(
-    # Convert text Date column to POSIXct with Chicago timezone
-    date_time = mdy_hms(Date, tz = "America/Chicago"),
+    # Convert text date column to POSIXct with Chicago timezone
+    date_time = mdy_hms(date, tz = "America/Chicago"),
     # Extract year, month, day-of-week, hour for analysis
     year      = year(date_time),
     month     = month(date_time, label = TRUE, abbr = TRUE),
@@ -25,7 +28,7 @@ table(crime$year)
 # Keep a recent window and drop rows missing coordinates
 crime <- crime |>
   filter(year >= 2018, year <= 2023) |>
-  drop_na(Latitude, Longitude)
+  drop_na(latitude, longitude)
 
 # Check resulting sample size and structure
 nrow(crime)
@@ -53,7 +56,7 @@ head(crime_monthly)
 ggplot(crime_monthly, aes(x = ym, y = n)) +
   geom_line(color = "steelblue") +
   labs(
-    title = "Chicago Crimes Per Month (2018–2023)",
+    title = "Chicago Crimes Per Month (2018\u20132023)",
     x = NULL,
     y = "Number of Incidents"
   )
@@ -74,7 +77,7 @@ ggplot(dow_hour, aes(x = hour, y = dow, fill = n)) +
   scale_fill_viridis_c(option = "C") +
   scale_x_continuous(breaks = 0:23) +
   labs(
-    title = "Chicago Crimes by Day of Week and Hour (2018–2023)",
+    title = "Chicago Crimes by Day of Week and Hour (2018\u20132023)",
     x = "Hour of Day",
     y = "Day of Week",
     fill = "Incidents"
@@ -83,7 +86,7 @@ ggplot(dow_hour, aes(x = hour, y = dow, fill = n)) +
 
 # Compute top 10 crime categories by incident count
 top_types <- crime |>
-  count(`Primary Type`, sort = TRUE) |>
+  count(primary_type, sort = TRUE) |>
   slice_head(n = 10)
 
 top_types
@@ -94,13 +97,13 @@ library(scales)
 # Bar chart of the top 10 crime categories
 ggplot(
   top_types,
-  aes(x = reorder(`Primary Type`, n), y = n)
+  aes(x = reorder(primary_type, n), y = n)
 ) +
   geom_col(fill = "tomato") +
   coord_flip() +
   scale_y_continuous(labels = label_comma()) +
   labs(
-    title = "Top 10 Crime Categories (2018–2023)",
+    title = "Top 10 Crime Categories (2018\u20132023)",
     x = "Primary type",
     y = "Number of Incidents"
   ) +
