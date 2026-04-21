@@ -1,4 +1,5 @@
 ![R Lint](https://github.com/Neuer2718/chicago-crime-eda/actions/workflows/lint.yml/badge.svg)
+![Run R Script](https://github.com/Neuer2718/chicago-crime-eda/actions/workflows/run-r.yml/badge.svg)
 
 # Chicago Crime EDA (2018–2023)
 
